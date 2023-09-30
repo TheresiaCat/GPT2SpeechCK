@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const userBubble = document.getElementById("user-bubble");
-    const botBubble = document.getElementById("bot-bubble");
-    const messageInput = document.getElementById("message-input");
-    const sendButton = document.getElementById("send-button");
-    const chatContainer = document.getElementById("chat-container");
+    const userBubble = document.querySelector("#user-bubble");
+    const botBubble = document.querySelector("#bot-bubble");
+    const messageInput = document.querySelector("#message-input");
+    const sendButton = document.querySelector("#send-button");
+    const chatContainer = document.querySelector("#chat-container");
+    
 
     // Bei Button-Klicken oder Enter-Taste wird der Inhalt des Inputfeldes übergeben an die Funktion "sendMessage"
     sendButton.addEventListener("click", sendMessage);
