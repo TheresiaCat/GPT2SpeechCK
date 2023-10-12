@@ -1,0 +1,4 @@
+<h1>AJAX</h1>
+<p>AJAX ist keine Programmiersprache </p>
+<p>AJAX ist eine Web-Technologie die meir helfen soll ineraktiv zu sein.</p>
+<p>AJAX heist Asynchronous JavaScript And XML.</p>

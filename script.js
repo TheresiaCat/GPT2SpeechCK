@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const messageInput = document.querySelector("#message-input");
     const sendButton = document.querySelector("#send-button");
     const chatContainer = document.querySelector("#chat-container");
+    const changeContentButton = document.querySelector("#change-content-button");
     
 
     // Bei Button-Klicken oder Enter-Taste wird der Inhalt des Inputfeldes übergeben an die Funktion "sendMessage"
@@ -47,5 +48,17 @@ document.addEventListener("DOMContentLoaded", function () {
         // Füge die Nachricht zum qna-container hinzu
         qnaContainer.appendChild(messageElement);
     }
+
+    changeContentButton.addEventListener("click", loadDoc);
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+           document.getElementById("demo").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "ajax_info.txt", true);
+        xhttp.send();
+      }
 });
 
