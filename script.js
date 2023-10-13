@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const messageInput = document.querySelector("#message-input");
     const sendButton = document.querySelector("#send-button");
     const chatContainer = document.querySelector("#chat-container");
-    const changeContentButton = document.querySelector("#change-content-button");
+    const parsePHPOutputButton = document.querySelector("#parse-PHP-Output");
     
 
     // Bei Button-Klicken oder Enter-Taste wird der Inhalt des Inputfeldes übergeben an die Funktion "sendMessage"
@@ -49,16 +49,33 @@ document.addEventListener("DOMContentLoaded", function () {
         qnaContainer.appendChild(messageElement);
     }
 
-    changeContentButton.addEventListener("click", loadDoc);
-    function loadDoc() {
+    parsePHPOutputButton.addEventListener("click", loadPhpContent);
+
+    function loadPhpContent() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-           document.getElementById("demo").innerHTML = this.responseText;
-          }
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML = this.responseText;
+            }
         };
-        xhttp.open("GET", "ajax_info.txt", true);
+        xhttp.open("GET", "http://localhost/api.php", true);
         xhttp.send();
-      }
+    }
+    
+    // Neuen Code hinzufügen, um auf Mutationen im DOM zu reagieren
+    var targetNode = document.getElementById("demo");
+    
+    var observer = new MutationObserver(function(mutationsList) {
+        for (var mutation of mutationsList) {
+            if (mutation.type == "childList") {
+                // Hier kannst du zusätzliche Aktionen ausführen, wenn sich der DOM ändert
+            }
+        }
+    });
+    
+    var config = { attributes: true, childList: true, subtree: true };
+
+    observer.observe(targetNode, config);
+    
 });
 
