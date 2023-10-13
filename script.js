@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (userMessage !== "") {
             // Sende Nachricht an die API und erhalte eine Antwort (fehlt noch)
             // Beispielantwort von der API
-            const botResponse = "Hallo world";
+           loadPhpContent(function (botResponse) {
 
             // Erstelle einen neuen qna-container für diese Runde
             const qnaContainer = document.createElement("div");
@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Eingabefeld leeren 
             messageInput.value = "";
+           });
         }
     }
 
@@ -49,21 +50,25 @@ document.addEventListener("DOMContentLoaded", function () {
         qnaContainer.appendChild(messageElement);
     }
 
-    parsePHPOutputButton.addEventListener("click", loadPhpContent);
+    // parsePHPOutputButton.addEventListener("click", loadPhpContent);
 
-    function loadPhpContent() {
+    function loadPhpContent(callback) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("demo").innerHTML = this.responseText;
+              //  document.getElementById("bot-message").innerHTML = this.responseText;
+              let test = this.responseText;
+              callback(test);//wartet bis variable einen Wert hat
+                
             }
         };
         xhttp.open("GET", "http://localhost/api.php", true);
         xhttp.send();
+        
     }
     
     // Neuen Code hinzufügen, um auf Mutationen im DOM zu reagieren
-    var targetNode = document.getElementById("demo");
+    var targetNode = document.getElementById("bot-message");
     
     var observer = new MutationObserver(function(mutationsList) {
         for (var mutation of mutationsList) {
