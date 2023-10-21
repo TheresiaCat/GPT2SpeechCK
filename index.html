@@ -22,6 +22,17 @@
             <button id="send-button">Senden</button>
         </div>
     </div>
+
+    <form id="demoForm" action="http://localhost/GPT2SpeechPHP/api.php" method="POST">
+        <label for="demoMessage">Nachricht eingeben:</label>
+        <input type="text" id="demoMessage" name="demoMessage" required>
+        <button type="submit">Senden</button>
+    </form>
+    
+    <div id="responseMessage"></div>
+
+
+
 </body>
 </html>
 

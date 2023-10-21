@@ -5,6 +5,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const sendButton = document.querySelector("#send-button");
     const chatContainer = document.querySelector("#chat-container");
 
+    const demoForm = document.getElementById('demoForm');
+    const responseMessage = document.getElementById('responseMessage');
+    
+    demoForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        const messageInput = document.getElementById('demoMessage');
+        const demomessage = messageInput.value;
+    
+        // AJAX-Anfrage an das PHP-Skript senden
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost/GPT2SpeechPHP/api.php', true);  
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                responseMessage.innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send('demoMessage=' + encodeURIComponent(demomessage));
+    });
+    
+
+
+
 
     // Bei Button-Klicken oder Enter-Taste wird der Inhalt des Inputfeldes übergeben an die Funktion "sendMessage"
     sendButton.addEventListener("click", sendMessage);
