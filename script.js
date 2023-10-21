@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function loadPhpContent(callback) {
         let xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "http://localhost/api.php", true);
+        xhttp.open("GET", "http://localhost/GPT2SpeechPHP/api.php", true);
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let test = this.responseText;
