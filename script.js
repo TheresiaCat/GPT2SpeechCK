@@ -25,7 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
             formdata.append("demoMessage",userMessage)
             const urlformdata = new URLSearchParams(formdata)
             loadPhpContent(urlformdata, function (botResponse) {
-            
+                
+                let audiohtml = `<audio controls>
+                <source src="${botResponse}" type="audio/wav">
+              </audio>`
+              //botBubble.appendChild(audiohtml); 
 
                 // Erstelle einen neuen qna-container für diese Runde
                 const qnaContainer = document.createElement("div");
@@ -33,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Nachrichten in den entsprechenden Container-bubbles ausgeben und zum qna-container hinzufügen
                 displayMessage(userMessage, "user-message", userBubble, qnaContainer);
-                displayMessage(botResponse, "bot-message", botBubble, qnaContainer);
+                displayMessage(audiohtml, "bot-message", botBubble, qnaContainer);
 
                 // Füge den qna-container dem chat-container hinzu
                 chatContainer.appendChild(qnaContainer);
@@ -48,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayMessage(textmessage, authorMessage, bubbleContainer, qnaContainer) {
         const messageElement = document.createElement("div");
         messageElement.classList.add("message", authorMessage);
-        messageElement.textContent = textmessage;
+        messageElement.innerHTML = textmessage;
         bubbleContainer.appendChild(messageElement);
 
         // Füge die Nachricht zum qna-container hinzu

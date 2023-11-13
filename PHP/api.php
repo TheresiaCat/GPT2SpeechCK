@@ -11,9 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 //Ausgabe von Bot 
-echo $_SESSION['savedMessage'];
+//echo $_SESSION['savedMessage'];
 
 //Text to Speech API
+/*
 $curl = curl_init();
 
 curl_setopt_array($curl, [
@@ -61,7 +62,6 @@ while($processing){
     ]);
     $response2=curl_exec($curl); 
     $data2=json_decode($response2); 
-    print_r($data2); 
     $processing = $data2 -> status ==="processing"; 
     if($data2 -> status == "fail"){
         die("API request failed"); 
@@ -69,14 +69,24 @@ while($processing){
 curl_close($curl);
 }
 
+/*
+$file = fopen($data2->url, "r");
+$size = fstat($file)["size"];
+$content = fread($file,$size); 
+fclose($file); 
+
+header('content-type: audio/wav');
+header('Content-Length: ' . $fsize);
+*/
+
+echo "https://s3.eu-central-1.amazonaws.com/tts-download/f5b8891f2b1b9d7e341f16df21026f70.wav?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZ3CYNLHHVKA7D7Z4%2F20231113%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20231113T185154Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=380bb8a507879f0ef632acad85ddc8d2373aafc06f06d86f3743e9d6f5fd74e5"; 
+die; 
 
 $err = curl_error($curl);
-
-
 
 if ($err) {
 	echo "cURL Error #:" . $err;
 } else {
-	echo $response;
+	echo $data2 ->url;
 }
 session_destroy();
