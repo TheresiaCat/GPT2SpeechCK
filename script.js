@@ -26,10 +26,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const urlformdata = new URLSearchParams(formdata)
             loadPhpContent(urlformdata, function (botResponse) {
                 
-                let audiohtml = `<audio controls>
-                <source src="${botResponse}" type="audio/wav">
+
+                let audiohtml = `${botResponse.textresponse}<audio controls>
+                <source src="${botResponse.audiourl}" type="audio/wav">
               </audio>`
-              //botBubble.appendChild(audiohtml); 
+            console.log(botResponse); 
+                
 
                 // Erstelle einen neuen qna-container für diese Runde
                 const qnaContainer = document.createElement("div");
@@ -69,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
             body: formdata
         })
         if(response.ok){
-            response.text().then((text)=>{
+            response.json().then((text)=>{
                 callback(text)
             })
         }

@@ -13,6 +13,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //Ausgabe von Bot 
 //echo $_SESSION['savedMessage'];
 
+//GPT 3.5 API 
+//183f85512da51a2845c6b91622d48b871b4217b9
+
+$curl_GPT = curl_init();
+
+curl_setopt_array($curl_GPT, [
+	CURLOPT_URL => "https://api.nlpcloud.io/v1/gpu/chatdolphin/chatbot",
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_ENCODING => "",
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 30,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => "POST",
+	CURLOPT_POSTFIELDS => json_encode([
+        'input'=>$demomessage,
+        'context'=>'You are friendly', 
+        'history'=>[],
+	]),
+	CURLOPT_HTTPHEADER => [
+        "Authorization: Token 183f85512da51a2845c6b91622d48b871b4217b9",
+		"content-type: application/json"
+	],
+]);
+$response_GPT = curl_exec($curl_GPT);
+curl_close($curl_GPT);
+//$response_GPT = json_decode($response_GPT); 
+
 //Text to Speech API
 /*
 $curl = curl_init();
@@ -79,8 +106,16 @@ header('content-type: audio/wav');
 header('Content-Length: ' . $fsize);
 */
 
-echo "https://s3.eu-central-1.amazonaws.com/tts-download/f5b8891f2b1b9d7e341f16df21026f70.wav?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZ3CYNLHHVKA7D7Z4%2F20231113%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20231113T185154Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=380bb8a507879f0ef632acad85ddc8d2373aafc06f06d86f3743e9d6f5fd74e5"; 
-die; 
+//echo "https://s3.eu-central-1.amazonaws.com/tts-download/f5b8891f2b1b9d7e341f16df21026f70.wav?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZ3CYNLHHVKA7D7Z4%2F20231113%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20231113T185154Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=380bb8a507879f0ef632acad85ddc8d2373aafc06f06d86f3743e9d6f5fd74e5"; 
+ 
+
+$fullbotresponse=[ 
+    'textresponse'=> $response_GPT, 
+    'audiourl'=> 'https://s3.eu-central-1.amazonaws.com/tts-download/f5b8891f2b1b9d7e341f16df21026f70.wav?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZ3CYNLHHVKA7D7Z4%2F20231113%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20231113T185154Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=380bb8a507879f0ef632acad85ddc8d2373aafc06f06d86f3743e9d6f5fd74e5'
+];
+header('Content-Type: application/json');
+echo json_encode($fullbotresponse);
+die;  
 
 $err = curl_error($curl);
 
