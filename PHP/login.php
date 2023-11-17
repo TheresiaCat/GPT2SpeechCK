@@ -3,7 +3,6 @@ include 'query.php';
 
 $username = $_POST['username'];
 $password = $_POST['password'];
-$mysqli = connectToDatabase();
 
 $result = queryDatabaseWithParameters($mysqli, "SELECT * FROM BENUTZER WHERE BENUTZERNAME = ? AND PASSWORT = ?", array($username, $password), 'ss');
 $counter = $result->num_rows;

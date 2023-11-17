@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const messageInput = document.querySelector("#message-input");
     const sendButton = document.querySelector("#send-button");
     const chatContainer = document.querySelector("#chat-container");
-
+    let messages = {user: [], bot:[]}; 
     // Bei Button-Klicken oder Enter-Taste wird der Inhalt des Inputfeldes übergeben an die Funktion "sendMessage"
     sendButton.addEventListener("click", sendMessage);
     messageInput.addEventListener("keydown", function (event) {
@@ -24,14 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
             const formdata = new FormData()
             formdata.append("demoMessage",userMessage)
             const urlformdata = new URLSearchParams(formdata)
-            loadPhpContent(urlformdata, function (botResponse) {
-                
-
+            loadPhpContent(urlformdata, async function (botResponse) {
+                messages.user.push(userMessage);
+                messages.bot.push(botResponse.textresponse); 
+                 
                 let audiohtml = `${botResponse.textresponse}<audio controls>
                 <source src="${botResponse.audiourl}" type="audio/wav">
               </audio>`
-            console.log(botResponse); 
-                
+                       
 
                 // Erstelle einen neuen qna-container für diese Runde
                 const qnaContainer = document.createElement("div");
@@ -40,6 +40,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Nachrichten in den entsprechenden Container-bubbles ausgeben und zum qna-container hinzufügen
                 displayMessage(userMessage, "user-message", userBubble, qnaContainer);
                 displayMessage(audiohtml, "bot-message", botBubble, qnaContainer);
+
+                const saveResponse= await fetch("/PHP/savechat.php",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type": "application/json"
+                        },
+                    body: JSON.stringify(messages)
+                })
 
                 // Füge den qna-container dem chat-container hinzu
                 chatContainer.appendChild(qnaContainer);
