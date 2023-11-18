@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const messageInput = document.querySelector("#message-input");
     const sendButton = document.querySelector("#send-button");
     const chatContainer = document.querySelector("#chat-container");
-    let messages = {user: [], bot:[], id:null}; 
+    let messages = {user: [], bot:[], id:null};
     // Bei Button-Klicken oder Enter-Taste wird der Inhalt des Inputfeldes übergeben an die Funktion "sendMessage"
     sendButton.addEventListener("click", sendMessage);
     messageInput.addEventListener("keydown", function (event) {

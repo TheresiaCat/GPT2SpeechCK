@@ -10,11 +10,7 @@ $counter = $result->num_rows;
 if ($counter == 1) {
     session_start();
      
-
-  //  $_SESSION['logged_in'] = true; 
-  //  $_SESSION['last_activity'] = time(); 
-  //  $_SESSION['expire_time'] = 600;
-// $_SESSION['loginToken'] = "angemeldet";
+    $_SESSION['logged_in'] = true; 
 
     $row = mysqli_fetch_array($result);
     $_SESSION['userid'] = $row['BenutzerID'];
@@ -22,7 +18,7 @@ if ($counter == 1) {
     $cookie = base64_encode($row['Benutzername'].":".$row['BenutzerID']); 
     setcookie("phpSessionCookie", $cookie, time()+60*60*24*30, "/");
 
-    header("Location: /"); // Weiterleitung zur index.html
+    header("Location: ../PHP/"); // Weiterleitung zur index.html
     exit(); // Wichtig, um sicherzustellen, dass der Code nach der Weiterleitung nicht weiter ausgeführt wird
 } else {
     die("Fehler"); 
