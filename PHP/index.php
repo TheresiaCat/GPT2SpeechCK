@@ -12,6 +12,8 @@
       session_start();
       if(isset($_SESSION['logged_in'])){
         print_r('<form action="logout.php"><input type="submit" value="logout"></form>');
+        print_r('<form action="deleteAcc.php"><input type="submit" value="delete my Acc"></form>');
+        print_r('<form action="viewLastChat.php"><input type="submit" value="View last Chat"></form>');
       }
       else{
         print_r('<form action="../login.html"><input type="submit" value="login"></form>');
