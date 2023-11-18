@@ -11,11 +11,10 @@ if ($counter == 1) {
     session_start();
      
 
-    //autologout nach 10 minuten
-    $_SESSION['logged_in'] = true; 
-    $_SESSION['last_activity'] = time(); 
-    $_SESSION['expire_time'] = 600;
-    $_SESSION['loginToken'] = "angemeldet";
+  //  $_SESSION['logged_in'] = true; 
+  //  $_SESSION['last_activity'] = time(); 
+  //  $_SESSION['expire_time'] = 600;
+// $_SESSION['loginToken'] = "angemeldet";
 
     $row = mysqli_fetch_array($result);
     $_SESSION['userid'] = $row['BenutzerID'];
