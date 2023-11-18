@@ -20,7 +20,7 @@
     }
     $mysqli = connectToDatabase();
 
-    
+
     //prüfe verbindung 
     /*
         if ($mysqli->ping()) {
@@ -56,4 +56,16 @@
         return $result;
 
     }
+
+    function userAlreadyExists($username, $mysqli) {
+        $arr = array($username);
+        $result = queryDatabaseWithParameters($mysqli, "SELECT * FROM BENUTZER WHERE BENUTZERNAME = ?", $arr, 's');
+        $counter = $result->num_rows;
+        if($counter >= 1){
+            return true;
+        }
+        return false;
+    }
+
+    
 ?>
