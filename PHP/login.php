@@ -21,8 +21,16 @@ if ($counter == 1) {
     header("Location: ../PHP/"); // Weiterleitung zur index.html
     exit(); // Wichtig, um sicherzustellen, dass der Code nach der Weiterleitung nicht weiter ausgeführt wird
 } else {
-    die("Fehler"); 
-    header("Location: /login.html");
+    print_r('<link rel="stylesheet" href="../mystyle.css">');
+    print_r('<div class="container">
+            <p>Ooopsies! Wrong login credentials.<p>
+                <form action="../login.html">
+                    <input type="submit" value="login again">
+                </form>
+                <form action="../register.html" method="GET">
+                    <input type="submit" value="register" id="Register my Acc"></input>
+                </form>
+            </div>');
     exit();
 }
 ?>
