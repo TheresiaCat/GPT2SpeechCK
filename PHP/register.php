@@ -4,7 +4,7 @@
 
     //userAlreadyExist returned true/false, bei true in if
     if(userAlreadyExists($username, $mysqli)) {
-        print_r('<link rel="stylesheet" href="../mystyle.css">');
+        print_r('<link rel="stylesheet" href="../mystyle.css">'); 
         print_r('<div class="container">
         <p>Opsies. This user already exists.<p>
         <form action="../login.html">
