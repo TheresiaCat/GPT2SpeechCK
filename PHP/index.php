@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatanwendung GPT2Speech</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../mystyle.css">
     <script src="../script.js"></script>
 </head>
 <body>
@@ -30,7 +30,7 @@
         </div>
         <div id="user-input">
             <input type="text" id="message-input" placeholder="Nachricht eingeben...">
-            <button id="send-button">Senden</button>
+            <button id="send-button"><img src="../assets/icon-send.png"></button>
         </div>
     </div>
 

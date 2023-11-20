@@ -24,7 +24,7 @@ p{
   
 
 /* Buttons */
-.button, input {
+input {
     display: inline-block;
     outline: none;
     cursor: pointer;
@@ -46,38 +46,6 @@ p{
     height: 48px;
   }
   
-  .button:hover, input {   
-    background-color: transparent;
-    }
-
-    /*
-#send-button {  
-    display: inline-block;
-    outline: 0;
-    border: none;
-    box-shadow: none;
-    cursor: pointer;
-    padding: 9px 22px;
-    font-size: 22px;
-    height: 50px;
-    font-weight: 400;
-    color: #fff;
-    text-align: center;
-    line-height: normal;
-    background: linear-gradient(90deg,#9B23E4 0,#0074e4 100%);
-    border-radius: 5px;
-    margin-left: 5px;
-    transition: color .2s ease,background-color .2s ease,box-shadow .2s ease;
-    cursor: pointer;   
-    }
-    
-
-#send-button:hover {
-    background-color: #5b1686;
-    box-shadow: 0 0 0 0.15rem #5ceace;
-}
-*/
-
 /*img*/
 #bg-chat {
     position: fixed; /* Damit das Hintergrundbild fest positioniert wird */
@@ -89,4 +57,98 @@ p{
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
+}
+
+/*Chatfenster*/ 
+#chat-container {
+    max-width: 40em;
+    margin: 0 auto;
+    position: relative; 
+}
+
+#user-bubble {
+    width: 60vw;
+    flex-direction: column-reverse; 
+    max-width: 1400px; 
+    width: 100%; 
+}
+
+.user-message {
+    background-color: #9B23E4;
+    color: #101010;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px; 
+    word-wrap: break-word;
+    width: 100%; 
+}
+
+#bot-bubble {
+    display: flex;
+    flex-direction: column-reverse; /* Umgekehrte Reihenfolge für die Bubbles */
+    max-width: 2000px; /* Maximale Breite auf 600px begrenzen */
+    width: 100%; /* Bubbles sollen die volle Breite des Containers einnehmen */
+}
+
+.bot-message {
+    background-color: #F5F5F5;
+    color: #101010;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    word-wrap: break-word;
+    width: 100%; /* Bubbles sollen die volle Breite des Containers einnehmen */
+}
+
+#send-button { 
+    display: inline-block;
+    outline: 0;
+    font-size: 22px;
+    border-radius: 25px;
+    margin-left: 5px;
+    background-color: #9B23E4;
+    transition-duration: 0.3s;
+    border: 1px solid transparent;
+    letter-spacing: 2px;
+    min-width: 48px; /* An die Höhe des Buttons anpassen, um einen runden Button zu erstellen */
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 400;
+    text-align: center;
+    padding: 0; /* Kein horizontaler Padding für einen runden Button */
+    color: #101010;
+    height: 48px;
+    cursor: pointer;  
+    }
+    
+
+#send-button:hover {
+    background-color: #5b1686;
+}
+
+#send-button img {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+}
+
+#user-input {
+    width: 50vw;
+    display: flex;
+    position: fixed;
+    bottom: 10vw;
+    margin: 20 auto; 
+    border-radius: 5px;
+}
+
+#message-input {
+    width: 40vw; 
+    padding: 12px 20px;
+    margin: 0 auto; 
+    box-sizing: border-box;
+    background-color: #ffffff;
+    padding: 10;
+    flex-grow: 1;
+    border-radius: 25px;
+    border: none;
 }
