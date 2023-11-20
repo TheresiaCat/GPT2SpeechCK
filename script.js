@@ -4,7 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const messageInput = document.querySelector("#message-input");
     const sendButton = document.querySelector("#send-button");
     const chatContainer = document.querySelector("#chat-container");
-    let messages = {user: [], bot:[], id:null};
+    let messages = {
+        user: [],
+        bot: [],
+        id: null
+    };
     // Bei Button-Klicken oder Enter-Taste wird der Inhalt des Inputfeldes übergeben an die Funktion "sendMessage"
     sendButton.addEventListener("click", sendMessage);
     messageInput.addEventListener("keydown", function (event) {
@@ -13,25 +17,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    
+
     function sendMessage() {
         // Input in Variable gespeichert, trim entfernt Leerzeichen am Anfang und Ende
-        const userMessage = messageInput.value.trim(); 
+        const userMessage = messageInput.value.trim();
 
         if (userMessage !== "") {
             // Sende Nachricht an die API und erhalte eine Antwort (fehlt noch)
             // Beispielantwort von der API
             const formdata = new FormData()
-            formdata.append("demoMessage",userMessage)
+            formdata.append("demoMessage", userMessage)
             const urlformdata = new URLSearchParams(formdata)
             loadPhpContent(urlformdata, async function (botResponse) {
                 messages.user.push(userMessage);
-                messages.bot.push(botResponse.textresponse); 
-                                
+                messages.bot.push(botResponse.textresponse);
+
                 let audiohtml = `${botResponse.textresponse}<audio controls>
                 <source src="${botResponse.audiourl}" type="audio/wav">
               </audio>`
-                       
+
 
                 // Erstelle einen neuen qna-container für diese Runde
                 const qnaContainer = document.createElement("div");
@@ -41,15 +45,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 displayMessage(userMessage, "user-message", userBubble, qnaContainer);
                 displayMessage(audiohtml, "bot-message", botBubble, qnaContainer);
 
-                const saveResponse= await fetch("/PHP/savechat.php",{
-                    method:"POST",
-                    headers:{
+                const saveResponse = await fetch("/PHP/savechat.php", {
+                    method: "POST",
+                    headers: {
                         "Content-Type": "application/json"
-                        },
+                    },
                     body: JSON.stringify(messages)
                 })
-                if(saveResponse.ok){
-                    saveResponse.text().then((ChatID)=>messages.id = ChatID)
+                if (saveResponse.ok) {
+                    saveResponse.text().then((ChatID) => messages.id = ChatID)
                 }
                 // Füge den qna-container dem chat-container hinzu
                 chatContainer.appendChild(qnaContainer);
@@ -73,15 +77,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Anfrage an PHP mit Übergabe von Text und Entgegennehmen von echo 
     async function loadPhpContent(formdata, callback) {
-        const response = await fetch("/PHP/api.php",{
+        const response = await fetch("/PHP/api.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
             body: formdata
         })
-        if(response.ok){
-            response.json().then((text)=>{
+        if (response.ok) {
+            response.json().then((text) => {
                 callback(text)
             })
         }

@@ -1,0 +1,18 @@
+{
+    "beautify.language": {
+      "js": {
+        "type": ["javascript", "json"],
+        "filename": [".jshintrc", ".jsbeautifyrc"]
+      },
+      "css": ["css", "scss"],
+      "html": ["htm", "html"],
+      "php": ["php"]
+    },
+    "keybindings": [
+      {
+        "key": "strg+b",
+        "command": "workbench.action.tasks.build"
+      }
+    ]
+  }
+  
