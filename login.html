@@ -12,14 +12,15 @@
 	<meta name="author" content="Catrin">
 	<meta name="page-topic" content="Speech GPT">
 	<meta name="expires" content="0">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../mystyle.css">
 </head>
 
 
 
 <body>
-		</header>
+		<div class="container">	
 		<main class="login">
+			<h2>Log in</h2>
 			<form action="./PHP/login.php" method="POST">
 				<label for="username">Benutzername</label>
 				<input id="username" type="text" name="username">
@@ -27,12 +28,14 @@
 				<label for="password">Passwort</label>
 				<input id="password" type="password" name="password">
 				<br><br>
-				<button id="anmelden-button">Anmelden</button>
+				<button id="anmelden-button">login</button>
 			</form>
+			<br><br><br><br>
 			<form action="register.html" method="GET">
-				<button id="register">Registrieren</button>
+				<button id="register">I don't have an acc</button>
 			</form>
 		</main>
+		</div>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

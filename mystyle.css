@@ -24,7 +24,7 @@ p{
   
 
 /* Buttons */
-input {
+input, button {
     display: inline-block;
     outline: none;
     cursor: pointer;
@@ -142,7 +142,7 @@ input {
 }
 
 #message-input {
-    width: 40vw; 
+    width: 42vw; 
     padding: 12px 20px;
     margin: 0 auto; 
     box-sizing: border-box;
@@ -152,3 +152,59 @@ input {
     border-radius: 25px;
     border: none;
 }
+
+
+/*login & register fenster*/ 
+.container {
+    max-width: 40em;
+    margin: 0 auto 0;
+    position: relative;
+    display: flex;
+    align-items: center; /* Vertikal zentrieren */
+    justify-content: center; /* Horizontal zentrieren */
+    height: 100vh; /* 100% der Bildschirmhöhe */
+  }
+  
+  .login {
+    font-family: 'CutiveMono-Regular', monospace;
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    font-family: 'CutiveMono-Regular', monospace;
+  }
+  
+  input {
+    box-sizing: border-box;
+    padding: 8px;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  
+  #anmelden-button,
+#register {
+    box-sizing: border-box;
+    padding: 8px;
+    margin: 10px 0;
+    width: 100%;
+  margin-top: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+#anmelden-button:hover,
+#register:hover {
+  background-color: #7f1cb3;
+}
+
+  
+  
