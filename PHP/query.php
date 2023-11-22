@@ -20,16 +20,6 @@
     }
     $mysqli = connectToDatabase();
 
-
-    //prüfe verbindung 
-    /*
-        if ($mysqli->ping()) {
-            echo "Verbindung erfolgreich hergestellt!";
-        } else {
-            die("Verbindung fehlgeschlagen: " . $mysqli->error);
-        }
-    */
-
     //queries database without parameters
     function queryDatabase($mysqli, $queryString) {
 

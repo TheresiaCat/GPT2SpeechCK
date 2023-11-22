@@ -36,7 +36,8 @@ curl_setopt_array($curl_GPT, [
 $response_GPT = curl_exec($curl_GPT);
 curl_close($curl_GPT);
 
-//Text to Speech API
+//Text to Speech API 
+//leider nicht funktional 
 /*
 $curl = curl_init();
 
@@ -107,7 +108,7 @@ header('Content-Length: ' . $fsize);
 //$response_GPT = "Test test Convo"; 
 
 $fullbotresponse=[ 
-    'textresponse'=> $response_GPT, 
+    'textresponse'=> $response_GPT,
     'audiourl'=> 'https://s3.eu-central-1.amazonaws.com/tts-download/f5b8891f2b1b9d7e341f16df21026f70.wav?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZ3CYNLHHVKA7D7Z4%2F20231113%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20231113T185154Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=380bb8a507879f0ef632acad85ddc8d2373aafc06f06d86f3743e9d6f5fd74e5'
 ];
 header('Content-Type: application/json');
